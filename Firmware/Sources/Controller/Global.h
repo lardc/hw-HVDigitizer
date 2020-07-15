@@ -17,6 +17,6 @@
 #define OE_MASK_IDC_H	BIT4	// DC sensing high range
 #define OE_MASK_RDC		BIT5	// Relay for RD-board
 //
-#define ADC_OFFSET_IQ	_IQ(-2047.0f)
+#define ADC_OFFSET_IQ	_IQ(0)
 
 #endif // __GLOBAL_H
