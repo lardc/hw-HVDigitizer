@@ -64,10 +64,12 @@ Boolean CMDH_HandleIncomingPacket(pInt16U Buffer)
 					switch (Buffer[1] & 0xFF)
 					{
 						case CurrentInput_Low:
+							ZbGPIO_OECompose(OE_MASK_IDC | OE_MASK_IDC_H, FALSE);
 							AIN_I = AIN_IL;
 							break;
 
 						case CurrentInput_High:
+							ZbGPIO_OECompose(OE_MASK_IDC | OE_MASK_IDC_H, FALSE);
 							AIN_I = AIN_IH;
 							break;
 
