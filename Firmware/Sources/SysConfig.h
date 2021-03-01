@@ -58,14 +58,13 @@
 
 // SPI-A
 //--------------------------------------------------------
-#define SPIA_BAUDRATE		6250000L  	// SPI clock = 6.25 MHz
 #define SPIA_PLR			TRUE		// CLK high in idle state
 #define SPIA_PHASE			FALSE
 //--------------------------------------------------------
 
 // SPI-D
 //--------------------------------------------------------
-#define SPID_BAUDRATE		6250000L  	// SPI clock = 6.25 MHz
+#define SPID_BAUDRATE		4000000L  	// SPI clock in MHz
 #define SPID_PLR			TRUE		// CLK high in idle state
 #define SPID_PHASE			FALSE
 //--------------------------------------------------------
