@@ -19,11 +19,8 @@
 //
 // Commands
 #define IBP_GET_DATA				0
-#define IBP_CMD_SAMPLING			1
-// 2-4
+// 1-4
 #define IBP_CMD_CFG_SWITCH			5
-#define IBP_CMD_SET_PWM				6
-#define IBP_CMD_SET_ADC				7
 #define IBP_CMD_DUMMY				0xFE
 #define IBP_ACK						0xFF
 
@@ -32,9 +29,9 @@
 // Switch configuration
 typedef enum __SwitchConfig
 {
-	SwitchConfig_BV = 0,
-	SwitchConfig_AC,
-	SwitchConfig_DC
+	SwitchConfig_I1 = 0,
+	SwitchConfig_I2,
+	SwitchConfig_I3
 } SwitchConfig;
 
 #endif // __INTER_BOARD_PROTOCOL_H
