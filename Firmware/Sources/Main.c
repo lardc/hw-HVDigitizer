@@ -20,7 +20,6 @@ Boolean InitializeCPU();
 void InitializeTimers();
 void InitializeADC();
 void InitializeSPI();
-void InitializePWM();
 void InitializeBoard();
 void InitializeController();
 // ----------------------------------------
@@ -58,7 +57,6 @@ void main()
 	InitializeTimers();
 	InitializeADC();
 	InitializeSPI();
-	InitializePWM();
 
 	// Setup ISRs
 	BEGIN_ISR_MAP
@@ -162,14 +160,6 @@ void InitializeSPI()
 
 	// Common (ABCD)
 	ZwSPI_EnableInterruptsGlobal(TRUE);
-}
-// ----------------------------------------
-
-void InitializePWM()
-{
-	ZwPWM6_Init(PWMUp, CPU_FRQ, PWM_FREQ, TRUE, FALSE, 0, 0, TRUE, TRUE, TRUE, FALSE, FALSE);
-	ZwPWM6_SetValueA(0);
-	ZwPWM_Enable(TRUE);
 }
 // ----------------------------------------
 

@@ -11,8 +11,8 @@
 
 // Program build mode
 //
-#define BOOT_FROM_FLASH					// normal mode
-#define RAM_CACHE_SPI_ABCD				// cache SPI-A(BCD) functions
+#define BOOT_FROM_FLASH						// normal mode
+#define RAM_CACHE_SPI_ABCD					// cache SPI-A(BCD) functions
 
 // Board options
 #define OSC_FRQ				(20MHz)			// on-board oscillator
@@ -21,7 +21,7 @@
 #define SYS_HSP_FREQ		(CPU_FRQ / 2) 	// High-speed bus freq = 50MHz
 #define SYS_LSP_FREQ		(CPU_FRQ / 2) 	// Low-speed bus freq = 50MHz
 //
-#define ZW_PWM_DUTY_BASE	(CPU_FRQ / PWM_FREQ)
+#define ZW_PWM_DUTY_BASE	5000
 
 // Peripheral options
 #define HWUSE_SPI_A
