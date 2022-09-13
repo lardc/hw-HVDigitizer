@@ -25,11 +25,18 @@ Boolean CMDH_HandleIncomingPacket(pInt16U Buffer)
 		{
 			case IBP_CMD_CFG_SWITCH:
 				CMDH_Commutate((SwitchConfig)Buffer[1]);
-				return TRUE;
+				break;
+
+			case IBP_CMD_DUMMY:
+				Buffer[1] = 0x55;
+				Buffer[2] = 0xAA;
+				break;
 
 			default:
 				break;
 		}
+
+		return TRUE;
 	}
 	else
 	{

@@ -13,7 +13,7 @@
 // Protocol
 #define IBP_PACKET_START_BYTE		0xA6u
 #define IBP_HEADER_SIZE				1
-#define IBP_BODY_SIZE				3
+#define IBP_BODY_SIZE				2
 #define IBP_PACKET_SIZE				(IBP_HEADER_SIZE + IBP_BODY_SIZE)
 #define IBP_CHAR_SIZE 				16
 //

@@ -3,7 +3,6 @@
 
 // Include
 #include "stdinc.h"
-//
 #include "ZbGPIO.h"
 
 #endif // __ZB_BOARD_H

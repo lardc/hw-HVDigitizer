@@ -26,9 +26,9 @@ void ZbGPIO_Init()
 	ZwGPIO_PinToOutput(PIN_LED_1);
 	ZwGPIO_PinToOutput(PIN_LED_2);
 	//
-		ZwGPIO_PinToOutput(PIN_OE_CS);
-		ZwGPIO_PinToOutput(PIN_OE_CLK);
-		ZwGPIO_PinToOutput(PIN_OE_DATA);
+	ZwGPIO_PinToOutput(PIN_OE_CS);
+	ZwGPIO_PinToOutput(PIN_OE_CLK);
+	ZwGPIO_PinToOutput(PIN_OE_DATA);
 }
 // ----------------------------------------
 

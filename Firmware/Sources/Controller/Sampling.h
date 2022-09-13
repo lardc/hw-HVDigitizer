@@ -7,17 +7,12 @@
 
 // Include
 #include "stdinc.h"
-#include "IQmathLib.h"
 
 // Functions
 //
 // Set ADC channels
 void SAMPLING_SetChannels(Int16U CurrentIn, Int16U VoltageIn);
-// Reset ADC launches counter
-void SAMPLING_ResetCounter();
 // Collect ADC data
-Boolean SAMPLING_LoadData(Int16U * const restrict aSampleVector);
-// Output collected data
-void SAMPLING_DataOutput(_iq *Voltage, _iq *Current);
+void SAMPLING_LoadData(Int16U * const restrict aSampleVector, pInt32U Voltage, pInt32U Current);
 
 #endif // __SAMPLING_H
