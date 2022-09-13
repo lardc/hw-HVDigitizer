@@ -26,8 +26,6 @@ void InitializeController();
 
 // FORWARD ISRs
 // ----------------------------------------
-// CPU Timer 0 ISR
-ISRCALL Timer0_ISR();
 // CPU Timer 2 ISR
 ISRCALL Timer2_ISR();
 // ADC SEQ1 ISR
@@ -60,7 +58,6 @@ void main()
 
 	// Setup ISRs
 	BEGIN_ISR_MAP
-		ADD_ISR(TINT0, Timer0_ISR);
 		ADD_ISR(TINT2, Timer2_ISR);
 		ADD_ISR(SEQ1INT, SEQ1_ISR);
 		ADD_ISR(SPIRXINTA, SPIaRX_ISR);
@@ -122,10 +119,6 @@ Boolean InitializeCPU()
 // Initialize CPU timers
 void InitializeTimers()
 {
-	ZwTimer_InitT0();
-	ZwTimer_SetT0(TIMER0_PERIOD);
-	ZwTimer_EnableInterruptsT0(TRUE);
-
 	ZwTimer_InitT2();
 	ZwTimer_SetT2(TIMER2_PERIOD);
 	ZwTimer_EnableInterruptsT2(TRUE);
@@ -178,24 +171,13 @@ void InitializeController()
 // ISRs
 // ----------------------------------------
 #ifdef BOOT_FROM_FLASH
-	#pragma CODE_SECTION(Timer0_ISR, "ramfuncs");
 	#pragma CODE_SECTION(Timer2_ISR, "ramfuncs");
 	#pragma CODE_SECTION(SEQ1_ISR, "ramfuncs");
 	#pragma CODE_SECTION(SPIaRX_ISR, "ramfuncs");
 	#pragma CODE_SECTION(IllegalInstruction_ISR, "ramfuncs");
 #endif
 //
-#pragma INTERRUPT(Timer0_ISR, HPI);
 #pragma INTERRUPT(SEQ1_ISR, HPI);
-
-ISRCALL Timer0_ISR()
-{
-	CONTROL_UpdateHigh();
-
-	// allow other interrupts from group 1
-	TIMER0_ISR_DONE;
-}
-// ----------------------------------------
 
 ISRCALL Timer2_ISR()
 {

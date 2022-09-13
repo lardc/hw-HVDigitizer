@@ -39,12 +39,7 @@
 
 // TIMERs
 //--------------------------------------------------------
-#define DIGITIZER_FREQ		25000L		// 25 kHz
-
-#define CS_T0_FREQ			DIGITIZER_FREQ
 #define CS_T2_FREQ			1000		// 1 kHz
-
-#define TIMER0_PERIOD		(1000000L / CS_T0_FREQ)
 #define TIMER2_PERIOD		(1000000L / CS_T2_FREQ)
 
 #define DBG_FREQ			2			// 2 Hz
@@ -69,8 +64,6 @@
 #define ADC_PRESCALER		0			// HSPCLK / (1 * 1) = 50 MHz
 #define ADC_CD2				TRUE		// Divide ADC core clock / 2 = 25MHz
 #define ADC_SH				1			// S/H sample window = 2 => 12.5 MSPS
-#define ADC_LAUNCH_NUM		3			// Number of ADC launches (SPS num = ADC_LAUNCH_NUM * 8)
-#define ADC_MAX_VAL			4095
 //--------------------------------------------------------
 
 // MISC
