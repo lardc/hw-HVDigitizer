@@ -1,4 +1,4 @@
-﻿// -----------------------------------------
+﻿// ----------------------------------------
 // Board-specific GPIO functions
 // ----------------------------------------
 
@@ -13,7 +13,6 @@
 //
 void ZbGPIO_Init();
 void ZbGPIO_OECompose(Int16U Mask, Boolean Enable);
-void ZbGPIO_OEReset();
 void ZbGPIO_OEFlush(Boolean Force);
 
 void inline ZbGPIO_SwitchLED1(Boolean Set)

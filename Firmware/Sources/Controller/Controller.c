@@ -1,4 +1,4 @@
-﻿// -----------------------------------------
+﻿// ----------------------------------------
 // Controller logic
 // ----------------------------------------
 
@@ -13,6 +13,7 @@
 #include "InterboardProtocol.h"
 #include "Sampling.h"
 #include "CommandHandler.h"
+#include "BoardConfig.h"
 
 
 // Variables
@@ -42,7 +43,7 @@ void CONTROL_Init()
 	if(ZwSystem_GetDogAlarmFlag())
 		ZwSystem_ClearDogAlarmFlag();
 
-	// Set switches to default state
+	SAMPLING_SetChannels(AIN_IH, AIN_VH);
 	ZbGPIO_OEFlush(TRUE);
 	DELAY_US(1000);
 }
@@ -186,6 +187,4 @@ void CONTROL_ReInitSPI_Rx()
 	// Init master Rx optical interface
 	ZwSPIa_Init(FALSE, 0, IBP_CHAR_SIZE, SPIA_PLR, SPIA_PHASE, ZW_SPI_INIT_RX, FALSE, FALSE);
 }
-// -----------------------------------------
-
-// No more.
+// ----------------------------------------

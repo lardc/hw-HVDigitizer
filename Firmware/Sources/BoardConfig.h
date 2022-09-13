@@ -1,4 +1,4 @@
-﻿// -----------------------------------------
+﻿// ----------------------------------------
 // Board parameters
 // ----------------------------------------
 
@@ -28,7 +28,7 @@
 #define HWUSE_SPI_D
 
 // IO placement
-#define SPI_A_QSEL		    GPAQSEL2
+#define SPI_A_QSEL			GPAQSEL2
 #define SPI_A_MUX			GPAMUX2
 #define SPI_A_SIMO			GPIO16
 #define SPI_A_SOMI			GPIO17

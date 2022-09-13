@@ -1,4 +1,4 @@
-﻿// -----------------------------------------
+﻿// ----------------------------------------
 // Controller logic
 // ----------------------------------------
 
@@ -43,58 +43,8 @@ Boolean CMDH_HandleIncomingPacket(pInt16U Buffer)
 				return TRUE;
 
 			case IBP_CMD_SET_ADC:
-				{
-					Int16U AIN_V, AIN_I;
-
-					switch (Buffer[1] >> 8)
-					{
-						case VoltageInput_Low:
-							AIN_V = AIN_VL;
-							break;
-
-						case VoltageInput_High:
-							AIN_V = AIN_VH;
-							break;
-
-						default:
-							AIN_V = AIN_VL;
-							break;
-					}
-
-					switch (Buffer[1] & 0xFF)
-					{
-						case CurrentInput_Low:
-							ZbGPIO_OECompose(OE_MASK_IDC | OE_MASK_IDC_H, FALSE);
-							AIN_I = AIN_IL;
-							break;
-
-						case CurrentInput_High:
-							ZbGPIO_OECompose(OE_MASK_IDC | OE_MASK_IDC_H, FALSE);
-							AIN_I = AIN_IH;
-							break;
-
-						case CurrentInput_DC_Low:
-							ZbGPIO_OECompose(OE_MASK_IDC | OE_MASK_IDC_H, TRUE);
-							AIN_I = AIN_IDC;
-							break;
-
-						case CurrentInput_DC_High:
-							ZbGPIO_OECompose(OE_MASK_IDC, TRUE);
-							ZbGPIO_OECompose(OE_MASK_IDC_H, FALSE);
-							AIN_I = AIN_IDC;
-							break;
-
-						default:
-							AIN_I = AIN_IL;
-							break;
-					}
-
-					SAMPLING_EnableIOffset((AIN_I == AIN_IDC) ? FALSE : TRUE);
-					SAMPLING_SetChannels(AIN_I, AIN_V);
-				}
 				return TRUE;
 
-			case IBP_CMD_DUMMY:
 			default:
 				break;
 		}
@@ -140,7 +90,7 @@ static void CMDH_Commutate(SwitchConfig State)
 
 static void CMDH_Sampling(Boolean Enable)
 {
-	if (Enable)
+	if(Enable)
 	{
 		ZbGPIO_SwitchLED1(TRUE);
 		CONTROL_MeasurementActive = TRUE;
@@ -154,5 +104,3 @@ static void CMDH_Sampling(Boolean Enable)
 	}
 }
 // ----------------------------------------
-
-// No more.

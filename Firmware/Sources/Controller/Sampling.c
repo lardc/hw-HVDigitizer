@@ -1,4 +1,4 @@
-﻿// -----------------------------------------
+﻿// ----------------------------------------
 // Auxiliary sampling routines
 // ----------------------------------------
 
@@ -24,21 +24,15 @@ static _iq adc_Ioffset = 0;
 //
 void SAMPLING_SetChannels(Int16U CurrentIn, Int16U VoltageIn)
 {
-	Int16U i, ADCChannels[16] = { 0 };
+	Int16U i, ADCChannels[16] = {0};
 
-	for (i = 0; i < 16; i += 2)
+	for(i = 0; i < 16; i += 2)
 	{
 		ADCChannels[i] = CurrentIn;
 		ADCChannels[i + 1] = VoltageIn;
 	}
 
 	ZwADC_ConfigureSequentialCascaded(16, ADCChannels);
-}
-// ----------------------------------------
-
-void SAMPLING_EnableIOffset(Boolean Enable)
-{
-	adc_Ioffset = (Enable) ? ADC_OFFSET_IQ : 0;
 }
 // ----------------------------------------
 
@@ -49,7 +43,7 @@ Boolean SAMPLING_LoadData(Int16U * const restrict aSampleVector)
 {
 	Int16U i;
 
-	if (counter < ADC_LAUNCH_NUM)
+	if(counter < ADC_LAUNCH_NUM)
 	{
 		counter++;
 
@@ -82,5 +76,3 @@ void SAMPLING_DataOutput(_iq *Voltage, _iq *Current)
 	current = 0;
 }
 // ----------------------------------------
-
-// No more.

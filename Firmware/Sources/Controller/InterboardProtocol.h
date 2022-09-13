@@ -1,4 +1,4 @@
-﻿// -----------------------------------------
+﻿// ----------------------------------------
 // Device exchange protocol
 // ----------------------------------------
 
@@ -29,22 +29,6 @@
 
 // Enums
 //
-// Current sensing chain
-typedef enum __CurrentInputs
-{
-	CurrentInput_Low = 0,
-	CurrentInput_High,
-	CurrentInput_DC_Low,
-	CurrentInput_DC_High
-} CurrentInputs;
-
-// Voltage sensing chain
-typedef enum __VoltageInputs
-{
-	VoltageInput_Low = 0,
-	VoltageInput_High
-} VoltageInputs;
-
 // Switch configuration
 typedef enum __SwitchConfig
 {

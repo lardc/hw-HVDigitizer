@@ -1,4 +1,4 @@
-﻿// -----------------------------------------
+﻿// ----------------------------------------
 // Auxiliary sampling routines
 // ----------------------------------------
 
@@ -13,8 +13,6 @@
 //
 // Set ADC channels
 void SAMPLING_SetChannels(Int16U CurrentIn, Int16U VoltageIn);
-// Enable offset on current channel
-void SAMPLING_EnableIOffset(Boolean Enable);
 // Reset ADC launches counter
 void SAMPLING_ResetCounter();
 // Collect ADC data

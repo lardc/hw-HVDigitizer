@@ -1,4 +1,4 @@
-﻿// -----------------------------------------
+﻿// ----------------------------------------
 // System parameters
 // ----------------------------------------
 
@@ -11,10 +11,10 @@
 
 // CPU & System
 //--------------------------------------------------------
-#define CPU_PLL				10          // OSCCLK * PLL div 2 = CPUCLK: 20 * 10 / 2 = 100
-#define CPU_CLKINDIV		0           // "div 2" in previous equation
-#define SYS_HISPCP       	0x01   		// SYSCLKOUT / 2
-#define SYS_LOSPCP       	0x01    	// SYSCLKOUT / 2
+#define CPU_PLL				10			// OSCCLK * PLL div 2 = CPUCLK: 20 * 10 / 2 = 100
+#define CPU_CLKINDIV		0			// "div 2" in previous equation
+#define SYS_HISPCP			0x01		// SYSCLKOUT / 2
+#define SYS_LOSPCP			0x01		// SYSCLKOUT / 2
 //--------------------------------------------------------
 
 // Power control
@@ -64,7 +64,7 @@
 
 // SPI-D
 //--------------------------------------------------------
-#define SPID_BAUDRATE		4000000L  	// SPI clock in MHz
+#define SPID_BAUDRATE		4000000L	// SPI clock in MHz
 #define SPID_PLR			TRUE		// CLK high in idle state
 #define SPID_PHASE			FALSE
 //--------------------------------------------------------

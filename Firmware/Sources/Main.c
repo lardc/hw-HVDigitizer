@@ -1,4 +1,4 @@
-﻿// -----------------------------------------
+﻿// ----------------------------------------
 // Program entry point
 // ----------------------------------------
 
@@ -15,7 +15,7 @@
 #include "Global.h"
 
 // FORWARD FUNCTIONS
-// -----------------------------------------
+// ----------------------------------------
 Boolean InitializeCPU();
 void InitializeTimers();
 void InitializeADC();
@@ -23,10 +23,10 @@ void InitializeSPI();
 void InitializePWM();
 void InitializeBoard();
 void InitializeController();
-// -----------------------------------------
+// ----------------------------------------
 
 // FORWARD ISRs
-// -----------------------------------------
+// ----------------------------------------
 // CPU Timer 0 ISR
 ISRCALL Timer0_ISR();
 // CPU Timer 2 ISR
@@ -37,23 +37,22 @@ ISRCALL SEQ1_ISR();
 ISRCALL SPIaRX_ISR();
 // ILLEGAL ISR
 ISRCALL IllegalInstruction_ISR();
-// -----------------------------------------
+// ----------------------------------------
 
 // FUNCTIONS
-// -----------------------------------------
+// ----------------------------------------
 // Program main function
 void main()
 {
-	Int16U i;
-
 	// Boot process
 	InitializeCPU();
 
 	// Switch GPIO in proper state
 	InitializeBoard();
 
-   	// Wait for power-on
-   	for(i = 0; i < MSC_PON_DELAY_MS; ++i) DELAY_US(1000);
+	// Wait for power-on
+	Int16U i;
+	for(i = 0; i < MSC_PON_DELAY_MS; ++i) DELAY_US(1000);
 
 	// Only if good clocking was established
 	InitializeTimers();
@@ -70,7 +69,7 @@ void main()
 		ADD_ISR(ILLEGAL, IllegalInstruction_ISR);
 	END_ISR_MAP
 
-   	// Initialize controller logic
+	// Initialize controller logic
 	InitializeController();
 
 	// Enable interrupts
@@ -93,47 +92,47 @@ void main()
 	while(TRUE)
 		CONTROL_Idle();
 }
-// -----------------------------------------
+// ----------------------------------------
 
 // Initialize and prepare DSP
 Boolean InitializeCPU()
 {
-    Boolean clockInitResult;
+	Boolean clockInitResult;
 
 	// Init clock and peripherals
-    clockInitResult = ZwSystem_Init(CPU_PLL, CPU_CLKINDIV, SYS_LOSPCP, SYS_HISPCP, SYS_PUMOD);
+	clockInitResult = ZwSystem_Init(CPU_PLL, CPU_CLKINDIV, SYS_LOSPCP, SYS_HISPCP, SYS_PUMOD);
 
-    if(clockInitResult)
-    {
+	if(clockInitResult)
+	{
 		// Do default GPIO configuration
 		ZwGPIO_Init(GPIO_TSAMPLE, GPIO_TSAMPLE, GPIO_TSAMPLE, GPIO_TSAMPLE, GPIO_TSAMPLE);
 		// Initialize PIE
 		ZwPIE_Init();
 		// Prepare PIE vectors
 		ZwPIE_Prepare();
-    }
+	}
 
 	// Configure flash
 	ZW_FLASH_CODE_SHADOW;
 	ZW_FLASH_MATH_SHADOW;
 	ZW_FLASH_OPTIMIZE(FLASH_FWAIT, FLASH_OTPWAIT);
 
-   	return clockInitResult;
+	return clockInitResult;
 }
-// -----------------------------------------
+// ----------------------------------------
 
 // Initialize CPU timers
 void InitializeTimers()
 {
-    ZwTimer_InitT0();
+	ZwTimer_InitT0();
 	ZwTimer_SetT0(TIMER0_PERIOD);
 	ZwTimer_EnableInterruptsT0(TRUE);
 
-    ZwTimer_InitT2();
+	ZwTimer_InitT2();
 	ZwTimer_SetT2(TIMER2_PERIOD);
 	ZwTimer_EnableInterruptsT2(TRUE);
 }
-// -----------------------------------------
+// ----------------------------------------
 
 void InitializeADC()
 {
@@ -145,7 +144,7 @@ void InitializeADC()
 	ZwADC_EnableInterrupts(TRUE, FALSE);
 	ZwADC_EnableInterruptsGlobal(TRUE);
 }
-// -----------------------------------------
+// ----------------------------------------
 
 void InitializeSPI()
 {
@@ -164,7 +163,7 @@ void InitializeSPI()
 	// Common (ABCD)
 	ZwSPI_EnableInterruptsGlobal(TRUE);
 }
-// -----------------------------------------
+// ----------------------------------------
 
 void InitializePWM()
 {
@@ -172,23 +171,22 @@ void InitializePWM()
 	ZwPWM6_SetValueA(0);
 	ZwPWM_Enable(TRUE);
 }
-// -----------------------------------------
+// ----------------------------------------
 
 void InitializeBoard()
 {
-   	// Init board GPIO
-   	ZbGPIO_Init();
+	ZbGPIO_Init();
 }
-// -----------------------------------------
+// ----------------------------------------
 
 void InitializeController()
 {
 	CONTROL_Init();
 }
-// -----------------------------------------
+// ----------------------------------------
 
 // ISRs
-// -----------------------------------------
+// ----------------------------------------
 #ifdef BOOT_FROM_FLASH
 	#pragma CODE_SECTION(Timer0_ISR, "ramfuncs");
 	#pragma CODE_SECTION(Timer2_ISR, "ramfuncs");
@@ -200,16 +198,16 @@ void InitializeController()
 #pragma INTERRUPT(Timer0_ISR, HPI);
 #pragma INTERRUPT(SEQ1_ISR, HPI);
 
-ISRCALL Timer0_ISR(void)
+ISRCALL Timer0_ISR()
 {
 	CONTROL_UpdateHigh();
 
 	// allow other interrupts from group 1
 	TIMER0_ISR_DONE;
 }
-// -----------------------------------------
+// ----------------------------------------
 
-ISRCALL Timer2_ISR(void)
+ISRCALL Timer2_ISR()
 {
 	static Int16U dbgCounter = 0;
 
@@ -227,10 +225,10 @@ ISRCALL Timer2_ISR(void)
 	// no PIE
 	TIMER2_ISR_DONE;
 }
-// -----------------------------------------
+// ----------------------------------------
 
 // ADC SEQ1 ISR
-ISRCALL SEQ1_ISR(void)
+ISRCALL SEQ1_ISR()
 {
 	// Handle interrupt
 	ZwADC_ProcessInterruptSEQ1();
@@ -240,7 +238,7 @@ ISRCALL SEQ1_ISR(void)
 	// allow other interrupts from group 1
 	ADC_ISR_DONE;
 }
-// -----------------------------------------
+// ----------------------------------------
 
 // SPI-A RX ISR
 ISRCALL SPIaRX_ISR()
@@ -253,10 +251,10 @@ ISRCALL SPIaRX_ISR()
 	// allow other interrupts from group 6
 	SPI_ISR_DONE;
 }
-// -----------------------------------------
+// ----------------------------------------
 
 // ILLEGAL ISR
-ISRCALL IllegalInstruction_ISR(void)
+ISRCALL IllegalInstruction_ISR()
 {
 	// Disable interrupts
 	DINT;
@@ -264,6 +262,4 @@ ISRCALL IllegalInstruction_ISR(void)
 	// Reset system using WD
 	ZwSystem_ForceDog();
 }
-// -----------------------------------------
-
-// No more.
+// ----------------------------------------
