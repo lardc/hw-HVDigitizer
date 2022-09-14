@@ -19,17 +19,17 @@ static void CMDH_Commutate(SwitchConfig State);
 // Functions
 Boolean CMDH_HandleIncomingPacket(pInt16U Buffer)
 {
-	if ((Buffer[0] >> 8) == IBP_PACKET_START_BYTE)
+	if((Buffer[0] >> 8) == IBP_PACKET_START_BYTE)
 	{
-		switch (Buffer[0] & 0x00FF)
+		switch(Buffer[0] & 0x00FF)
 		{
 			case IBP_CMD_CFG_SWITCH:
 				CMDH_Commutate((SwitchConfig)Buffer[1]);
 				break;
 
-			case IBP_CMD_DUMMY:
-				Buffer[1] = 0x55;
-				Buffer[2] = 0xAA;
+			case IBP_CMD_PING:
+				Buffer[1] = 0xAA66;
+				Buffer[2] = 0xAA66;
 				break;
 
 			default:

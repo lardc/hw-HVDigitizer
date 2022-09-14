@@ -75,10 +75,7 @@ void CONTROL_HandleTransmission()
 
 		// Обработка пакета с командой
 		else if(CMDH_HandleIncomingPacket((pInt16U)SPIInputDataBuffer))
-		{
-			SPIInputDataBuffer[0] = (Int16U)((IBP_PACKET_START_BYTE << 8) | IBP_ACK);
 			CONTROL_SendData(SPIInputDataBuffer);
-		}
 	}
 }
 // ----------------------------------------

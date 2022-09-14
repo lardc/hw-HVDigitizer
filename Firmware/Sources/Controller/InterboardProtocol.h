@@ -18,11 +18,9 @@
 #define IBP_CHAR_SIZE 				16
 //
 // Commands
-#define IBP_GET_DATA				0
-// 1-4
-#define IBP_CMD_CFG_SWITCH			5
-#define IBP_CMD_DUMMY				0xFE
-#define IBP_ACK						0xFF
+#define IBP_GET_DATA				1
+#define IBP_CMD_CFG_SWITCH			2
+#define IBP_CMD_PING				3
 
 // Enums
 //
