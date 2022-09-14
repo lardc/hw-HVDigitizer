@@ -109,7 +109,6 @@ Boolean InitializeCPU()
 
 	// Configure flash
 	ZW_FLASH_CODE_SHADOW;
-	ZW_FLASH_MATH_SHADOW;
 	ZW_FLASH_OPTIMIZE(FLASH_FWAIT, FLASH_OTPWAIT);
 
 	return clockInitResult;
@@ -182,6 +181,7 @@ void InitializeController()
 ISRCALL Timer2_ISR()
 {
 	static Int16U dbgCounter = 0;
+	++CONTROL_TimeCounter;
 
 	// Service watch-dogs
 	ZwSystem_ServiceDog();

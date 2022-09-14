@@ -18,6 +18,7 @@
 // Variables
 static volatile Int16U SPIInputDataBuffer[IBP_PACKET_SIZE], SPIOutputDataBuffer[IBP_PACKET_SIZE];
 static volatile Boolean SampleActive = FALSE;
+volatile Int64U CONTROL_TimeCounter, CONTROL_InterfaceLED;
 
 // Forward functions
 static Boolean CONTROL_ReceiveData();
@@ -44,6 +45,10 @@ void CONTROL_Idle()
 {
 	// Handle external register change
 	ZbGPIO_OEFlush(FALSE);
+
+	// Гашение светодиода
+	if(CONTROL_TimeCounter > CONTROL_InterfaceLED)
+		ZbGPIO_SwitchLED1(FALSE);
 }
 // ----------------------------------------
 
@@ -55,6 +60,9 @@ void CONTROL_HandleTransmission()
 	// Receive master data
 	if(CONTROL_ReceiveData())
 	{
+		CONTROL_InterfaceLED = CONTROL_TimeCounter + SMPL_LED_BLINK;
+		ZbGPIO_SwitchLED1(TRUE);
+
 		// Запуск оцифровки
 		if(SPIInputDataBuffer[0] == ((IBP_PACKET_START_BYTE << 8) | IBP_GET_DATA))
 		{
