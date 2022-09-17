@@ -40,5 +40,9 @@ void SAMPLING_LoadData(Int16U * const restrict aSampleVector, pInt32U Voltage, p
 		*Current += aSampleVector[i];
 		*Voltage += aSampleVector[i + 1];
 	}
+
+	// Сохраняем один дополнительный бит, полученный в результате оверсэмплинга
+	*Voltage >>= 2;
+	*Current >>= 2;
 }
 // ----------------------------------------
