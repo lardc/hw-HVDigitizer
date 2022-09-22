@@ -54,7 +54,7 @@
 
 // SPI-D
 //--------------------------------------------------------
-#define SPID_BAUDRATE		6250000L	// SPI clock in MHz
+#define SPID_BAUDRATE		6250000L	// SPI clock in Hz
 #define SPID_PLR			TRUE		// CLK high in idle state
 #define SPID_PHASE			FALSE
 //--------------------------------------------------------
