@@ -64,23 +64,18 @@ Boolean CMDH_HandleIncomingPacket(pInt16U Buffer)
 					switch (Buffer[1] & 0xFF)
 					{
 						case CurrentInput_Low:
-							ZbGPIO_OECompose(OE_MASK_IDC | OE_MASK_IDC_H, FALSE);
 							AIN_I = AIN_IL;
 							break;
 
 						case CurrentInput_High:
-							ZbGPIO_OECompose(OE_MASK_IDC | OE_MASK_IDC_H, FALSE);
 							AIN_I = AIN_IH;
 							break;
 
 						case CurrentInput_DC_Low:
-							ZbGPIO_OECompose(OE_MASK_IDC | OE_MASK_IDC_H, TRUE);
 							AIN_I = AIN_IDC;
 							break;
 
 						case CurrentInput_DC_High:
-							ZbGPIO_OECompose(OE_MASK_IDC, TRUE);
-							ZbGPIO_OECompose(OE_MASK_IDC_H, FALSE);
 							AIN_I = AIN_IDC;
 							break;
 
@@ -88,8 +83,6 @@ Boolean CMDH_HandleIncomingPacket(pInt16U Buffer)
 							AIN_I = AIN_IL;
 							break;
 					}
-
-					SAMPLING_EnableIOffset((AIN_I == AIN_IDC) ? FALSE : TRUE);
 					SAMPLING_SetChannels(AIN_I, AIN_V);
 				}
 				return TRUE;
@@ -154,5 +147,3 @@ static void CMDH_Sampling(Boolean Enable)
 	}
 }
 // ----------------------------------------
-
-// No more.

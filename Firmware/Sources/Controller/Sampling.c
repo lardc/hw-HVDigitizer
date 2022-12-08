@@ -18,7 +18,6 @@
 // Variables
 static Int16U counter = 0;
 static Int32S voltage = 0, current = 0;
-static _iq adc_Ioffset = 0;
 
 // Functions
 //
@@ -33,12 +32,6 @@ void SAMPLING_SetChannels(Int16U CurrentIn, Int16U VoltageIn)
 	}
 
 	ZwADC_ConfigureSequentialCascaded(16, ADCChannels);
-}
-// ----------------------------------------
-
-void SAMPLING_EnableIOffset(Boolean Enable)
-{
-	adc_Ioffset = (Enable) ? ADC_OFFSET_IQ : 0;
 }
 // ----------------------------------------
 
@@ -75,12 +68,10 @@ Boolean SAMPLING_LoadData(Int16U * const restrict aSampleVector)
 #endif
 void SAMPLING_DataOutput(_iq *Voltage, _iq *Current)
 {
-	(*Voltage) = _FP32toIQ2(voltage, TOTAL_SAMPLES) + ADC_OFFSET_IQ;
-	(*Current) = _FP32toIQ2(current, TOTAL_SAMPLES) + adc_Ioffset;
+	(*Voltage) = _FP32toIQ2(voltage, TOTAL_SAMPLES);
+	(*Current) = _FP32toIQ2(current, TOTAL_SAMPLES);
 
 	voltage = 0;
 	current = 0;
 }
 // ----------------------------------------
-
-// No more.
