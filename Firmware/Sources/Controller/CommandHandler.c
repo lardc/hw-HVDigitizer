@@ -48,6 +48,7 @@ Boolean CMDH_HandleIncomingPacket(pInt16U Buffer)
 
 					switch (Buffer[1] >> 8)
 					{
+						default:
 						case VoltageInput_Low:
 							AIN_V = AIN_VL;
 							break;
@@ -55,32 +56,21 @@ Boolean CMDH_HandleIncomingPacket(pInt16U Buffer)
 						case VoltageInput_High:
 							AIN_V = AIN_VH;
 							break;
-
-						default:
-							AIN_V = AIN_VL;
-							break;
 					}
 
 					switch (Buffer[1] & 0xFF)
 					{
-						case CurrentInput_Low:
+						default:
+						case CurrentInput_Lowest:
 							AIN_I = AIN_IL;
+							break;
+
+						case CurrentInput_Low:
+							AIN_I = AIN_IH2;
 							break;
 
 						case CurrentInput_High:
 							AIN_I = AIN_IH;
-							break;
-
-						case CurrentInput_DC_Low:
-							AIN_I = AIN_IDC;
-							break;
-
-						case CurrentInput_DC_High:
-							AIN_I = AIN_IDC;
-							break;
-
-						default:
-							AIN_I = AIN_IL;
 							break;
 					}
 					SAMPLING_SetChannels(AIN_I, AIN_V);

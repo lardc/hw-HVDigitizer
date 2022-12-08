@@ -32,10 +32,9 @@
 // Current sensing chain
 typedef enum __CurrentInputs
 {
-	CurrentInput_Low = 0,
-	CurrentInput_High,
-	CurrentInput_DC_Low,
-	CurrentInput_DC_High
+	CurrentInput_Lowest = 0,
+	CurrentInput_Low,
+	CurrentInput_High
 } CurrentInputs;
 
 // Voltage sensing chain
