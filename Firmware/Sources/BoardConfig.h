@@ -49,9 +49,9 @@
 #define PIN_OE_DATA			13
 
 // ADC placement
-#define AIN_IH2				0x01	// 0001b = A + IN1
-#define AIN_IH				0x02	// 0010b = A + IN2
-#define AIN_IL				0x03	// 0000b = A + IN3
+#define AIN_IH2				0x00	// 0000b = A + IN0
+#define AIN_IH				0x01	// 0001b = A + IN1
+#define AIN_IL				0x02	// 0010b = A + IN2
 //
 #define AIN_VL				0x08	// 0100b = B + IN0
 #define AIN_VH				0x09	// 0101b = B + IN1
